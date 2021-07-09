@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  {% if title %}
+  <title>InstaClone~Application- {{title}}</title>
+  {% else %}
+    <title> InstaClone~Application </title>
+  {% endif %}
+
+</head>
+<body>
+    {% block content %} {%endblock%}
+</body>
+</html>
