@@ -13,9 +13,21 @@ class Image(models.Model):
     def __str__(self):
         return self.image_name
 
+    def save_image(self):
+        self.save()
+
+    def delete_image(self):
+        self.delete()
+
 class Profile(models.Model):
-    profile_photo = models.ImageField(upload_to = 'images/',blank = True)
+    profile_photo = models.ImageField(upload_to = 'profilepics/',blank = True)
     bio = models.TextField(max_length=100)
 
     def __str__(self):
         return self.profile_photo
+
+    def save_profile(self):
+        self.save()
+
+    def delete_profile(self):
+        self.delete()
