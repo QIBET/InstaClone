@@ -15,11 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url,include
+from django.contrib.auth import views
+
 
 
 urlpatterns = [
     url('admin/', admin.site.urls),
-    url(r'',include('insta.urls'))
+    url(r'',include('insta.urls')),
+    url(r'^accounts/', include('django_registration.backends.one_step.urls')),
+
+ 
 
 
 ]

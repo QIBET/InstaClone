@@ -1,0 +1,3 @@
+Hello {{name}}
+
+Welcome to the InstaClone Application where you get to post your images and like,comment on other's images that you follow.

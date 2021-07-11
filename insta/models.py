@@ -6,8 +6,8 @@ class Image(models.Model):
     image_caption =models.CharField(max_length =50)
     image = models.ImageField(upload_to = 'images/',blank = True)
     comments = models.TextField(max_length=100)
-    likes = models.PositiveBigIntegerField(default = 0)
-    profile = models.ForeignKey('Profile', on_delete = models.CASCADE,null='True', blank=True)
+    """ likes = models.PositiveBigIntegerField(default = 0)
+    profile = models.ForeignKey('Profile', on_delete = models.CASCADE,null='True', blank=True) """
 
 
     def __str__(self):
