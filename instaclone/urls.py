@@ -23,8 +23,7 @@ urlpatterns = [
     url('admin/', admin.site.urls),
     url(r'',include('insta.urls')),
     url(r'^accounts/', include('django_registration.backends.one_step.urls')),
-
- 
+    url('accounts/', include('django.contrib.auth.urls')),
 
 
 ]
