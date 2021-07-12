@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 class ImageUploadForm(forms.ModelForm):
     class Meta:
         model = Image
-        exclude = ['comments','likes','user']
+        exclude = ['profile','comments','likes','user']
         
 class ProfileForm(forms.ModelForm):
     class Meta:

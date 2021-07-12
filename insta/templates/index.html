@@ -1,28 +1,63 @@
 {%extends 'base.html'%}
-{% load bootstrap3 %}
-{% load static %}
-{% block content%}
 
-{{block.super}}
+{% block content%}
 <div class="container">
+
+    {% for image in images %}
     <div class="row">
-        <div class="col"></div>
-        <div class="col-md-11">
-            {%for image in images%}
-            <div class="card" style="width: 100%;">
-                <img src="{{image.image.url}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h1>{{image.image_name}}</h1>
-                    <p class="card-text">{{image.image_caption}}</p>
-                   
-                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                   
+        <div class=" col-md-3 ">
+        </div>
+
+        <div class=" col-md-6 mx-auto">
+            <div class="card mb-2">
+            <div class="card">
+                <div class="card-header">
+                        <span><img src="{{image.user.profile.profile_photo.url}}" alt="" data-target="#{{image.image_name}}{{image.id}}"
+                        data-toggle="modal"
+                            style="border-radius: 50%; width:50px; height:50px; border-color: brown; border-width: 1px;"></span>
+                        <div>
+                            <p class="caption">{{image.user.username}}</p>
+                        </div>
+                    <p>{{image_caption}}</p>
+                </div>
+                <img src="{{image.image.url}}" alt="" class="img-thumbnail img-responsive img-fluid">
+                <div class="">
+                    <div class="engagement">
+                            <a href="{% url 'likes' image.id%}"><i class="far fa-heart" class="btn btn-outline-info btn-sm"></i></a>
+                            
+                            <a href=""><i class="fab fa-telegram-plane " class="btn btn-outline-info btn-sm"></i></i></a>
+                            <a href=""><i class="far fa-bookmark"></i></a>                
+                    </div>
+                    <div class="likes">
+                        {{image.likes}} Likes
+                         <p class="mr-auto" class="capt">{{image.image_caption}}</p>
+                    </div>      
+                  </div>
+                </div>
+                 </div>
+        </div>
+        <div class=" col-md-2 ">
+    </div>
+
+    <div class="modal fade" id="{{image.image_name}}{{image.id}}" tabindex="-1" role="dialog"
+        aria-labelledby="examplemodal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center" id="modaltitle">{{image.image_name}}</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="{{image.image.url}}" alt="" width="100%" height="100%" class="img-top">
+                </div>
+                <div class="modal-footer">
+                    <p class="mr-auto">{{image.image_caption}}</p>
+
+                    <button type="button" class="btn btn-sm btn-outline-info" data-dismiss="modal">Close</button>
+
                 </div>
             </div>
-            {%endfor%}
         </div>
-        <div class="col"></div>
     </div>
-</div>
-    
-{%endblock%}
+    </div>
+    {% endfor %}
+    {% endblock %}

@@ -14,6 +14,7 @@ from .email import send_welcome_email
 
 
 # Create your views here.
+@login_required(login_url='/accounts/login/')
 def home(request):
     images = Image.get_images()
     users = User.objects.exclude(id=request.user.id)
@@ -36,7 +37,7 @@ def profile(request):
     
     current_user=request.user
     profile= Profile.objects.filter(user=current_user).first()
-    posts =  request.user.photo_set.all()
+    posts =  request.user.image_set.all()
     
     
     
@@ -68,3 +69,40 @@ def search_user(request):
     else:
         message = "You haven't searched for any term "
         return render(request, 'search.html', {"message": message})
+def add_comment(request,id):
+
+    current_user = request.user
+    image = Image.get_single_photo(id=id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        print(form)
+        
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = current_user
+            comment.image_id = id
+            comment.save()
+        return redirect('home')
+
+    else:
+        form = CommentForm()
+        return render(request,'insta/new_comment.html',{"form":form,"image":image})  
+    
+def comments(request,id):
+    comments = Comments.get_comments(id)
+    number = len(comments   )
+    
+    return render(request,'insta/comments.html',{"comments":comments,"number":number})        
+
+@login_required (login_url='/accounts/register/')          
+def like_images(request,id):
+    image =  Image.get_single_photo(id)
+    user = request.user
+    user_id = user.id
+    
+    if user.is_authenticated:
+        uplike = image.votes.up(user_id)
+        image.likes = image.votes.count()
+        image.save()
+        
+    return redirect('home')
