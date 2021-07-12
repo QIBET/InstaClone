@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from .models import Image,Profile,Follow
-from .forms import ImageUploadForm, ImageProfileForm, CommentForm,UpdateImageForm,UserCreationForm,
+from .forms import ImageUploadForm, ImageProfileForm, CommentForm, ProfileForm,UpdateImageForm,UserCreationForm,
 from django.contrib.auth.models import User
 
 
@@ -33,3 +33,26 @@ def image_upload(request):
     else:
         form = ImageUploadForm()
         return render(request,'upload.html', {"form":form})
+def profile(request):
+    
+    current_user=request.user
+    profile= Profile.objects.filter(user=current_user).first()
+    posts =  request.user.photo_set.all()
+    
+    
+    
+    return render(request,'profile.html',{"images":posts,"profile":profile,"current_user":current_user})
+        
+def profile_edit(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = ProfileForm(request.POST,request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.user = current_user
+            image.save()
+        return redirect('profile')
+
+    else:
+        form = ProfileForm()
+        return render(request,'edit_profile.html',{"form":form})
