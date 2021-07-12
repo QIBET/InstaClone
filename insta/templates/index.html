@@ -1,4 +1,28 @@
-{% extends 'base.html'%}
-{% block content %}
-<p>jesus</p>
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+{% load static %}
+{% block content%}
+
+{{block.super}}
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-md-11">
+            {%for image in images%}
+            <div class="card" style="width: 100%;">
+                <img src="{{image.image.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h1>{{image.image_name}}</h1>
+                    <p class="card-text">{{image.image_caption}}</p>
+                   
+                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                   
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+    
 {%endblock%}

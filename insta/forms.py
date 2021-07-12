@@ -25,7 +25,7 @@ class CreateUserForm(UserCreationForm):
 	class Meta:
 		model = User
 		fields = ['username', 'email', 'password1', 'password2']
-class UpdateImageForm(forms.modelForm):
+class UpdateImageForm(forms.ModelForm):
     class Meta:
         model = Image
         exclude = ['comments','likes','user']

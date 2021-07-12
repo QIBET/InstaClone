@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from .models import Image,Profile,Follow
-from .forms import ImageUploadForm, CommentForm, ProfileForm,UserCreationForm,
+from .forms import ImageUploadForm, CommentForm, ProfileForm,UserCreationForm
 from django.contrib.auth.models import User
 
 
@@ -14,7 +14,6 @@ from .email import send_welcome_email
 
 
 # Create your views here.
-@login_required(login_url='/accounts/login/')
 def home(request):
     images = Image.get_images()
     users = User.objects.exclude(id=request.user.id)
