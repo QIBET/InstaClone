@@ -1,60 +1,39 @@
-from django.db import models
+from django.db import models 
 from django.contrib.auth.models import User
+from tinymce.models import HTMLField
+from vote.models import VoteModel
 
-
-# Create your models here.
+#create your models here
 class Image(models.Model):
-    image_name =models.CharField(max_length =30)
-    image_caption =models.CharField(max_length =50)
-    image = models.ImageField(upload_to = 'images/',blank = True)
-    comments = models.TextField(max_length=100)
+    image = models.ImageField(upload_to='images/')
+    image_name = models.CharField(max_length=50)
+    image_caption = models.CharField(max_length=50)
     likes = models.PositiveIntegerField(default=0)
-    user = models.ForeignKey('Profile', on_delete = models.CASCADE,null='True', blank=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     
-    def __str__(self):
-        return self.image_name
-
     def save_image(self):
         self.save()
-
+        
     def delete_image(self):
         self.delete()
-    @classmethod
-    def get_images(cls):
-        all_pics=cls.objects.all()
-        return all_pics
-
-class Profile(models.Model):
-    profile_photo = models.ImageField(upload_to = 'profilepics/',blank = True,)
-    bio = models.TextField(max_length=100)
-    user = models.OneToOneField(User, related_name='profile', on_delete=models.CASCADE,null=True)
-
-    def __str__(self):
-        return self.profile_photo
-
-    def save_profile(self):
-        self.save()
-
-    def delete_profile(self):
-        self.delete()
-    @classmethod
-    def get_profiles(cls):
-        profiles=cls.objects.all()
-        return profiles
-
-class Follow(models.Model):
-    follower = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='following')
-    followed = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='followers')
-
-    def _str_(self):
-        return f'{self.follower} Follow'
-
-
+        
+    @classmethod    
+    def update_caption(cls,id,new_caption):
+        cls.objects.filter(pk = id ).update(image_caption = new_caption)
+        new_caption_object = cls.objects.get(image_caption=new_caption)
+        new_caption = new_caption_object.image_caption
+        return new_caption
     
-
-    def _str_(self):
-        return f'{self.user.name} Image'
-""" class Comments(models.Model):
+    @classmethod
+    def get_single_photo(cls,id):
+        image = cls.objects.get(pk=id)
+        return image
+    
+    def __str__(self):
+        
+        return self.image_name
+    
+class Comments(models.Model):
     comment = models.CharField(max_length=100,blank=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     image = models.ForeignKey(Image,on_delete=models.CASCADE)
@@ -70,4 +49,26 @@ class Follow(models.Model):
     
     def __str__(self):
         
-        return self.comment """
+        return self.comment
+class Profile(models.Model):
+    profile_photo = models.ImageField(upload_to='images')
+    bio = models.TextField(max_length=100)
+    user = models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
+    
+    
+    def __str__(self):
+        
+        return self.profile_photo.url
+    
+    def save_profile(self):
+        self.save()
+        
+    def delete_profile(self):
+        self.delete()
+    
+    @classmethod   
+    def update_bio(cls,id,new_bio):
+        cls.objects.filter(pk = id).update(bio=new_bio)
+        new_bio_object = cls.objects.get(bio = new_bio)
+        new_bio = new_bio_object.bio
+        return new_bio

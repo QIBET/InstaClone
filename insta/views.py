@@ -3,9 +3,12 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from .models import Image,Profile,Follow
+from .models import Image,Profile,Comments
 from .forms import ImageUploadForm, CommentForm, ProfileForm,UserCreationForm
 from django.contrib.auth.models import User
+from vote.managers import  VotableManager
+votes = VotableManager()
+
 
 
 
@@ -16,7 +19,7 @@ from .email import send_welcome_email
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def home(request):
-    images = Image.get_images()
+    images = Image.objects.all()
     users = User.objects.exclude(id=request.user.id)
 
     return render(request, 'index.html',{"images":images,"users":users})
