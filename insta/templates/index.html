@@ -16,13 +16,13 @@
                             data-toggle="modal"
                                 style="border-radius: 50%; width:50px; height:50px; border-color: brown; border-width: 1px;"></span>
                             <div>
-                                <p class="caption">{{image.user.username}}</p>
+                                <p class="userName">{{image.user.username}}</p>
                             </div>
                         <p>{{image_caption}}</p>
                     </div>
                     <img src="{{image.image.url}}" alt="" class="img-thumbnail img-responsive img-fluid">
                     <div class="">
-                        <div class="engagement">
+                        <div class="tablinks">
                                 <a href="{% url 'likes' image.id%}" style="font-size: 15px;">Like</a>
                                 <a href="{% url 'newComment' image.id%}" style="font-size: 15px;">Add Comment</a>
                                 <a href="{% url 'comments' image.id %}"style="font-size: 15px;">view comments</a>

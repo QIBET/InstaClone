@@ -26,9 +26,7 @@ header{
 .navigation a{
     color: #111;
 }
-.login-inner{
-    margin-top: 100px;
-}
+
 .instalogo{
     display: flex;
     flex-direction: row;
@@ -40,21 +38,15 @@ header{
     padding-left: 10px;  
 }
 
-.vl{
-    border-left: 1.5px solid #111;
-    height: 30px;
-    margin-left: 20px; 
-}
 
-.contact_icons{
+.nav_icons{
     display: flex;
     justify-content: flex-end;
     width: 30%;
-    /* padding-left: 100px; */
 }
 
-.contact_icons a{
-    padding-left: 30px;
+.nav_icons a{
+    padding-left: 20px;
     font-size: 25px;
     font-weight: lighter; 
 }
@@ -69,9 +61,7 @@ header{
     text-align: center;
     position: absolute;
 }
-.log{
-    margin-top: 100px;
-}
+
 
 .search_bar a{
     font-size: 25px;
@@ -125,7 +115,6 @@ header{
 }
 .profile_image{
     display: inline-block;
-    background-color: navy;
     height: 30px;
     width: 30px;
     padding: 0;
@@ -164,13 +153,13 @@ header{
     height: 614px;
 }
 
-.engagement{
+.tablinks{
     display: inline-block;
     width: 100%;
     margin: 4px 0px 0px;
     padding: 0px 16px;
 }
-.engagement a{
+.tablinks a{
     padding: 7px;
     font-size: 25px;
     color: slategray;
@@ -192,13 +181,13 @@ header{
     padding: 0px 21px; 
 }
 
-.caption{
+.userName{
     display: inline-block;
     width: 100%;
     padding: 0px 16px;
 }
 
-.caption a{
+.userName a{
     font-size: 10px;
     font-weight: bold;
     color: #000;
@@ -209,7 +198,7 @@ header{
     padding-right: 5px; 
 }
 
-.caption span{
+.userName span{
     font-size: 14px;
     font-weight: 500;
     color: #111;
@@ -217,89 +206,11 @@ header{
     margin-right: 15px; 
 }
 
-.time_posted{
-    font-size: 10px;
-    font-weight: 300;
-    color: #111;
-    padding: 0px 16px;
-    text-transform: uppercase;
-}
+
 .col-4{
     margin: 0;
     margin-left: 3%;
     margin-top: 5%;
-}
-.stories-container{
-    margin: 0;
-    margin-top: 5%;
-    background-color: #fff;
-    height: 33%;
-    border: 1px solid #DBDBDB;
-    border-radius: 2%;
-    width: 70%;    
-}
-
-.stories{
-    color: #929292;
-    font-size: 120%;
-    font-weight: 500;
-   }
-.watch-all{
-   float: right;
-   font-weight: 500;
-}
-
-.stories-profiles{
-   margin: 0;
-   margin-top: 2%;
-}
-.stories-img{
-   border: 2px solid #C82D8D;
-   border-radius: 50%;
-   cursor: pointer;
-}
-.stories-name{
-   margin: 0;
-   margin-left: 2%;
-   font-weight: 500;
-   font-size: 120%;
-}
-.minutes-ago{
-   margin: 0;
-   margin-left: 18%;
-   color: #929292;
-}
-.suggestions-container{
-    margin: 0;
-    margin-top: 5%;
-    background-color: #fff;
-   
-    border: 1px solid #DBDBDB;
-    border-radius: 2%;
-    width: 70%;  
-}
-.capt{
-    font-weight: bolder;
-}
-.follow-suggestion{
-    
-    float: right;
-    font-weight: 500;
-    color: #00ADF1;
-}
-.prof{
-    height: 50%;
-    width: 50%;
-}
-
-.caption{
-    color: black;
-    font-weight: bolder;
-}
-
-.follow-suggestion:hover{
-    text-decoration: none;
-    color: #00ADF1;
 }
 
 .side-footer{
