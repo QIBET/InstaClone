@@ -1,4 +1,6 @@
 {% load bootstrap3 %}
+{% load bootstrap4 %}
+
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -11,9 +13,12 @@
     <title> InstaClone~Application </title>
   {% endif %}
   {% block styles %}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+        integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
     {% bootstrap_css %}
-    <link rel="stylesheet" href="{% static 'css/insta.css' %}">
-
+      <link rel="stylesheet" href="{% static 'css/insta.css'%}">
   {% endblock %}
 
 

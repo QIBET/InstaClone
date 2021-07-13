@@ -89,15 +89,14 @@ def add_comment(request,id):
 
     else:
         form = CommentForm()
-        return render(request,'insta/new_comment.html',{"form":form,"image":image})  
+        return render(request,'new_comment.html',{"form":form,"image":image})  
     
 def comments(request,id):
     comments = Comments.get_comments(id)
     number = len(comments)
     
-    return render(request,'insta/comments.html',{"comments":comments,"number":number})        
+    return render(request,'comments.html',{"comments":comments,"number":number})        
 
-@login_required (login_url='/accounts/register/')          
 def like_images(request,id):
     image =  Image.get_single_photo(id)
     user = request.user
