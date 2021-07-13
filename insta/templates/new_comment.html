@@ -1,4 +1,4 @@
-{% load bootstrap3 %}
+{% load bootstrap4 %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -11,16 +11,16 @@
 
     {% block styles %}
     {% bootstrap_css %}
-     <link rel="stylesheet" href="{% static 'css/insta.css'%}">
+    <link rel="stylesheet" href="{% static 'css/insta.css'%}">
     {% endblock %}
 </head>
 
 <body>
     <div class="container">
-    <form action="{% url 'uploadImage' %}" method="post" enctype="multipart/form-data">
+    <form action="{% url 'newComment' image.id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {% bootstrap_form form%}
-        <input type="submit" class="btn btn-success btn-lg" value="Post">
+        <input type="submit" class="btn btn-success btn-lg" value="submit">
     </form>
 
     {% block scripts %}

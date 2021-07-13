@@ -7,6 +7,10 @@ from .models import Image,Profile,Comments
 from .forms import ImageUploadForm, CommentForm, ProfileForm,UserCreationForm
 from django.contrib.auth.models import User
 from vote.managers import  VotableManager
+from django.contrib import auth
+from django.http import HttpResponseRedirect
+
+
 votes = VotableManager()
 
 
@@ -108,3 +112,7 @@ def like_images(request,id):
         image.save()
         
     return redirect('home')
+def logout_view(request):
+  auth.logout(request)
+  # Redirect to a success page.
+  return HttpResponseRedirect("/account/loggedout/")

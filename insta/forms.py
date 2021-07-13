@@ -1,6 +1,6 @@
 from django import forms
 from django.db.models import fields
-from . models import Image,Profile
+from . models import Comments, Image,Profile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -18,8 +18,8 @@ class ProfileForm(forms.ModelForm):
 
 class CommentForm(forms.ModelForm):
     class Meta:
-        model = Image
-        exclude = ['image_name','image_caption','image''likes','user']
+        model = Comments
+        exclude = ['image','date_posted','user']
 
 class CreateUserForm(UserCreationForm):
 	class Meta:
