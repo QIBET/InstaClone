@@ -93,7 +93,7 @@ def add_comment(request,id):
     
 def comments(request,id):
     comments = Comments.get_comments(id)
-    number = len(comments   )
+    number = len(comments)
     
     return render(request,'insta/comments.html',{"comments":comments,"number":number})        
 
